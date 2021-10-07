@@ -132,8 +132,32 @@ import com.tev.book_a_meal.Model.Shipper
 import com.tev.book_a_meal.ViewHolder.ShipperViewHolder
 
 class MainActivity : AppCompatActivity() {
+    var btnSignInAsAdmin: Button? = null
+    var btnSignInAsStaff: Button? = null
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //add calligraphy
+        CalligraphyConfig.initDefault(
+            CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/restaurant_font.otf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        )
         setContentView(R.layout.activity_main)
+        btnSignInAsAdmin = findViewById<View>(R.id.btnSignInAsAdmin) as Button
+        btnSignInAsStaff = findViewById<View>(R.id.btnSignInAsStaff) as Button
+        btnSignInAsStaff!!.setOnClickListener {
+            val signInAsStaff = Intent(this@MainActivity, SignInAsStaff::class.java)
+            startActivity(signInAsStaff)
+        }
+        btnSignInAsAdmin!!.setOnClickListener {
+            val signInAsAdmin = Intent(this@MainActivity, SignInAsAdmin::class.java)
+            startActivity(signInAsAdmin)
+        }
     }
 }
