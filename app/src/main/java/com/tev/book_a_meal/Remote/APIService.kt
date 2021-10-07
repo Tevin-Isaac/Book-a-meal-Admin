@@ -131,5 +131,9 @@ import com.tev.book_a_meal.ViewHolder.ShipperViewHolder
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Headers
+
 interface APIService {
+    @Headers("Content-Type:application/json", "Authorization:key=yourKey")
+    @POST("fcm/send")
+    fun sendNotification(@Body body: Sender?): Call<MyResponse?>
 }

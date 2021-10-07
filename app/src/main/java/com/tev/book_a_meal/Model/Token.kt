@@ -132,4 +132,12 @@ import com.tev.book_a_meal.Model.Shipper
 import com.tev.book_a_meal.ViewHolder.ShipperViewHolder
 
 class Token {
+    var token: String? = null
+    var isServerToken = false
+
+    constructor() {}
+    constructor(token: String?, isServerToken: Boolean) {
+        this.token = token
+        this.isServerToken = isServerToken
+    }
 }

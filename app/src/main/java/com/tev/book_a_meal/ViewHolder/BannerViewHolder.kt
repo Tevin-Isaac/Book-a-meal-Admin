@@ -129,5 +129,19 @@ import com.tev.book_a_meal.AdminScrollingActivity
 import com.tev.book_a_meal.Model.Shipper
 import com.tev.book_a_meal.ViewHolder.ShipperViewHolder
 
-class BannerViewHolder {
+class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+    OnCreateContextMenuListener {
+    var banner_name: TextView
+    var banner_image: ImageView
+    override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo) {
+        menu.setHeaderTitle("Select the action")
+        menu.add(0, 0, adapterPosition, Common.UPDATE)
+        menu.add(0, 1, adapterPosition, Common.DELETE)
+    }
+
+    init {
+        banner_name = itemView.findViewById<View>(R.id.banner_name) as TextView
+        banner_image = itemView.findViewById<View>(R.id.banner_image) as ImageView
+        itemView.setOnCreateContextMenuListener(this)
+    }
 }
