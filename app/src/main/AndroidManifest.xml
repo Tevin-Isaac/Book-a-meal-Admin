@@ -2,22 +2,65 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tev.book_a_meal">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Bookameal">
+        tools:replace="android:icon"
+        android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".AdminScrollingActivity"
+            android:label="@string/title_activity_admin_scrolling"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SignInAsStaff" />
+        <activity android:name=".SignInAsAdmin" />
+        <activity
+            android:name=".Home"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".FoodList" />
+        <activity android:name=".OrderStatus" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC9aSkUFUCyLG69GeLR2ic8MF9LLxNNsNs" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity
+            android:name=".TrackingOrder"
+            android:label="@string/title_activity_tracking_order" />
+        <activity android:name=".OrderDetail" />
+
+
+
+        <activity android:name=".BannerActivity" />
+        <activity android:name=".SendMessage" />
+        <activity android:name=".ManageAccount" />
+        <activity android:name=".ViewComment" />
+        <activity
+            android:name=".MainAdminActivity"
+            android:label="@string/title_activity_main_admin"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ShipperManagement" />
     </application>
 
 </manifest>
