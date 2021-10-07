@@ -13,12 +13,10 @@ import org.json.JSONArray
 import com.google.android.gms.maps.model.LatLng
 import org.json.JSONException
 import android.content.ContextWrapper
-import android.app.NotificationManager
 import android.annotation.TargetApi
+import android.app.*
 import android.os.Build
-import android.app.NotificationChannel
 import com.tev.book_a_meal.Helper.NotificationHelper
-import android.app.PendingIntent
 import com.tev.book_a_meal.R
 import retrofit2.http.POST
 import com.tev.book_a_meal.Model.Sender
@@ -55,8 +53,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.content.DialogInterface
 import android.support.design.widget.Snackbar
-import android.app.Activity
-import android.app.ProgressDialog
 import android.content.Context
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.OnFailureListener
@@ -109,6 +105,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.CameraUpdateFactory
 import android.graphics.BitmapFactory
+import android.net.Uri
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.tev.book_a_meal.TrackingOrder.ParserTask
 import kotlin.jvm.Synchronized
@@ -129,5 +126,50 @@ import com.tev.book_a_meal.AdminScrollingActivity
 import com.tev.book_a_meal.Model.Shipper
 import com.tev.book_a_meal.ViewHolder.ShipperViewHolder
 
-class NotificationHelper {
+class NotificationHelper(base: Context?) : ContextWrapper(base) {
+    var manager: NotificationManager? = null
+        get() {
+            if (field == null) field = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            return field
+        }
+        private set
+
+    @TargetApi(Build.VERSION_CODES.O)
+    private fun createChannel() {
+        val iDeliveryChannel = NotificationChannel(
+            iDelivery_ID,
+            iDelivery_Name,
+            NotificationManager.IMPORTANCE_DEFAULT
+        )
+        iDeliveryChannel.enableLights(false)
+        iDeliveryChannel.enableVibration(true)
+        iDeliveryChannel.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
+        manager!!.createNotificationChannel(iDeliveryChannel)
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    fun getiDeliveryChannelNotification(
+        title: String?,
+        body: String?,
+        contentIntent: PendingIntent?,
+        soundUri: Uri?
+    ): Notification.Builder {
+        return Notification.Builder(applicationContext, iDelivery_ID)
+            .setContentIntent(contentIntent)
+            .setContentTitle(title)
+            .setContentText(body)
+            .setSmallIcon(R.mipmap.ic_launcher_round)
+            .setSound(soundUri)
+            .setAutoCancel(false)
+    }
+
+    companion object {
+        private const val iDelivery_ID = "com.tev.book_a_meal"
+        private const val iDelivery_Name = "ibookameal"
+    }
+
+    init {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) //only working this if api is 26 or higher
+            createChannel()
+    }
 }

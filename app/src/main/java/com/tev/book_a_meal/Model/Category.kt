@@ -132,4 +132,12 @@ import com.tev.book_a_meal.Model.Shipper
 import com.tev.book_a_meal.ViewHolder.ShipperViewHolder
 
 class Category {
+    var name: String? = null
+    var image: String? = null
+
+    constructor() {}
+    constructor(name: String?, image: String?) {
+        this.name = name
+        this.image = image
+    }
 }

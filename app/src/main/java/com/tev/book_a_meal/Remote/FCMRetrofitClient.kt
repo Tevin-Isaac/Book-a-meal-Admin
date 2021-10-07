@@ -130,4 +130,14 @@ import com.tev.book_a_meal.Model.Shipper
 import com.tev.book_a_meal.ViewHolder.ShipperViewHolder
 
 object FCMRetrofitClient {
+    private var retrofit: Retrofit? = null
+    fun getClient(baseURL: String?): Retrofit? {
+        if (retrofit == null) {
+            retrofit = Retrofit.Builder()
+                .baseUrl(baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
+        return retrofit
+    }
 }

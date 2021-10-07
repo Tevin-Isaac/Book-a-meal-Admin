@@ -131,5 +131,6 @@ import com.tev.book_a_meal.AdminScrollingActivity
 import com.tev.book_a_meal.Model.Shipper
 import com.tev.book_a_meal.ViewHolder.ShipperViewHolder
 
-class Result {
+internal class Result {
+    var message_id: String? = null
 }

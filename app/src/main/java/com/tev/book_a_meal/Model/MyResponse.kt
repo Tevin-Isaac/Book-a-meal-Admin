@@ -1,5 +1,7 @@
 package com.tev.book_a_meal.Model
 
+import kotlin.Result
+
 com.tev.book_a_meal.Model.Order
 com.tev.book_a_meal.Remote.APIService
 com.tev.book_a_meal.Remote.FCMRetrofitClient
@@ -132,4 +134,9 @@ import com.tev.book_a_meal.Model.Shipper
 import com.tev.book_a_meal.ViewHolder.ShipperViewHolder
 
 class MyResponse {
+    var multicast_id: Long = 0
+    var success = 0
+    var failure = 0
+    var canonical_ids = 0
+    var results: List<Result>? = null
 }

@@ -132,4 +132,15 @@ import com.tev.book_a_meal.Model.Shipper
 import com.tev.book_a_meal.ViewHolder.ShipperViewHolder
 
 class Shipper {
+    var name: String? = null
+    var password: String? = null
+    var phone: String? = null
+    var isstaff: String? = null
+    var isadmin: String? = null
+
+    constructor() {}
+    constructor(Pname: String?, Ppassword: String?) {
+        name = Pname
+        password = Ppassword
+    }
 }
