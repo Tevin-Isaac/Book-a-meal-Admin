@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,7 +8,7 @@
     android:layout_margin="8dp"
     android:backgroundTint="@color/colorGold3"
     android:id="@+id/account_info"
-    tools:context="com.example.liew.ideliveryserver.ManageAccount"
+    tools:context="com.tev.book_a_meal.ManageAccount"
     app:cardBackgroundColor="#FFFFFF"
     app:cardElevation="4dp">
 
@@ -87,4 +87,4 @@
     </LinearLayout>
 
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

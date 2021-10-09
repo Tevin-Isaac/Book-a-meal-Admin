@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,6 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
-        android:text="@string/admin_text" />
+        android:text="Book a meal is the future of food deliveries in the world
 
-</android.support.v4.widget.NestedScrollView>
+The best part of online meal booking facility is that a restaurant meal can be booked as per the convenience of the guest without visiting the actual restaurant location. Before booking the meal you get a chance to see the clear pictures of the restaurant menu and the meal which you want to book.
+The detailed information about restaurant, other services and reviews help the new booker to get an idea about the restaurant for meal booking.
+
+Online booking service is the best way to book a meal in any destination in the area, Get takeout, or choose delivery when available. With this online booking service customer can book meal which is near location of your residence or work place and choose the meal from restaurant menu. Many good restaurants which provide the online food booking facility are online on the website. In online booking you can save time and amount of money due to the discount rates offered to the agencies, by the restaurant. These online agencies usually make consensus with many restaurant. The restaurant provides substantial discounts to the agencies and in return these agencies make block booking for the restaurant. The discounts provided by the restaurant are passed on to the customers." />
+
+</androidx.core.widget.NestedScrollView>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/iphonewallpaper"
-    tools:context="com.example.liew.ideliveryserver.SignInAsStaff">
+    tools:context="com.tev.book_a_meal.SignInAsStaff">
 
 
     <LinearLayout
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@android:color/white"
-            android:text="0128688032"
+            android:text="0123456789"
             android:textColor="@android:color/white"
             android:textSize="28sp"
             android:inputType="phone"
@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@android:color/white"
-            android:text="chau1995"
+            android:text="admin"
             android:textColor="@android:color/white"
             android:textSize="28sp"
             android:inputType="textPassword"

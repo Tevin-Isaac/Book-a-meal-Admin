@@ -1,45 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.tev.book_a_meal">
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
-        android:icon="@"
+        android:fullBackupContent="true"
+        android:icon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
-        android:roundIcon="@"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         tools:replace="android:icon"
         android:theme="@style/AppTheme">
         <activity
             android:name=".AdminScrollingActivity"
             android:label="@string/title_activity_admin_scrolling"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity">
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignInAsStaff" />
-        <activity android:name=".SignInAsAdmin" />
+        <activity android:name=".SignInAsStaff"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".SignInAsAdmin"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".Home"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".FoodList" />
-        <activity android:name=".OrderStatus" />
+            android:theme="@style/AppTheme"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".FoodList"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".OrderStatus"
+            tools:ignore="Instantiatable" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC9aSkUFUCyLG69GeLR2ic8MF9LLxNNsNs" />
+            android:value="" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -47,20 +60,28 @@
 
         <activity
             android:name=".TrackingOrder"
-            android:label="@string/title_activity_tracking_order" />
-        <activity android:name=".OrderDetail" />
+            android:label="@string/title_activity_tracking_order"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".OrderDetail"
+            tools:ignore="Instantiatable" />
 
 
 
-        <activity android:name=".BannerActivity" />
-        <activity android:name=".SendMessage" />
-        <activity android:name=".ManageAccount" />
-        <activity android:name=".ViewComment" />
+        <activity android:name=".BannerActivity"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".SendMessage"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".ManageAccount"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".ViewComment"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".MainAdminActivity"
             android:label="@string/title_activity_main_admin"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".ShipperManagement" />
+            android:theme="@style/AppTheme"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".ShipperManagement"
+            tools:ignore="Instantiatable" />
     </application>
 
 </manifest>

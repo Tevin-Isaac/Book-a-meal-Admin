@@ -46,7 +46,7 @@ import com.tev.book_a_meal.ViewHolder.MenuViewHolder
 import android.support.v7.widget.RecyclerView
 import com.rengwuxian.materialedittext.MaterialEditText
 import info.hoang8f.widget.FButton
-import android.support.v4.widget.DrawerLayout
+import androidx.core.widget.DrawerLayout
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import android.os.Bundle
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
@@ -66,7 +66,7 @@ import com.squareup.picasso.Picasso
 import com.tev.book_a_meal.Interface.ItemClickListener
 import com.tev.book_a_meal.FoodList
 import android.view.ViewGroup
-import android.support.v4.view.GravityCompat
+import androidx.core.view.GravityCompat
 import com.tev.book_a_meal.BannerActivity
 import com.tev.book_a_meal.SendMessage
 import com.tev.book_a_meal.ScrollingActivity
@@ -86,8 +86,8 @@ import com.tev.book_a_meal.OrderDetail
 import com.tev.book_a_meal.TrackingOrder
 import android.text.TextUtils
 import com.tev.book_a_meal.ViewHolder.ShowCommentViewHolder
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener
+import androidx.core.widget.SwipeRefreshLayout
+import androidx.core.widget.SwipeRefreshLayout.OnRefreshListener
 import com.tev.book_a_meal.Common.NumberOfFood
 import com.tev.book_a_meal.SignInAsStaff
 import com.tev.book_a_meal.SignInAsAdmin
@@ -96,13 +96,13 @@ import android.text.InputType
 import android.text.method.PasswordTransformationMethod
 import com.tev.book_a_meal.MainAdminActivity
 import com.tev.book_a_meal.Home
-import android.support.v4.app.FragmentActivity
+import androidx.core.app.FragmentActivity
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.common.api.GoogleApiClient
-import android.support.v4.app.ActivityCompat
+import androidx.core.app.ActivityCompat
 import android.content.pm.PackageManager
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.SupportMapFragment
