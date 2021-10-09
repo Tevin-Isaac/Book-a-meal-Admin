@@ -3,7 +3,6 @@ package com.tev.book_a_meal
 import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.rengwuxian.materialedittext.MaterialEditText
@@ -36,11 +35,11 @@ class SendMessage : AppCompatActivity() {
                 .build()
         )
         setContentView(R.layout.activity_send_message)
-        mService = Common.getFCMClient()
-        edtTitle = findViewById<View>(R.id.edtTitle) as MaterialEditText
-        edtMessage = findViewById<View>(R.id.edtMessage) as MaterialEditText
-        btnSubmit = findViewById<View>(R.id.btnSubmit) as FButton
-        btnSubmit!!.setOnClickListener { verifyTitleAndMessage() }
+//        mService = Common.getFCMClient()
+//        edtTitle = findViewById<View>(R.id.edtTitle) as MaterialEditText
+//        edtMessage = findViewById<View>(R.id.edtMessage) as MaterialEditText
+//        btnSubmit = findViewById<View>(R.id.btnSubmit) as FButton
+//        btnSubmit!!.setOnClickListener { verifyTitleAndMessage() }
     }
 
     private fun verifyTitleAndMessage() {
@@ -56,7 +55,7 @@ class SendMessage : AppCompatActivity() {
             edtTitle!!.text.toString(), edtMessage!!.text.toString()
         )
         val toTopic = Sender()
-        toTopic.to = StringBuilder("/topics/").append(Common.topicName).toString()
+//        toTopic.to = StringBuilder("/topics/").append(Common.topicName).toString()
         toTopic.notification = notification
         mService!!.sendNotification(toTopic).enqueue(object : Callback<MyResponse?> {
             override fun onResponse(call: Call<MyResponse?>, response: Response<MyResponse?>) {

@@ -53,7 +53,7 @@
             android:text="@string/sign_in_as_admin"
             android:textColor="@android:color/white"
             app:cornerRadius="8dp"
-            app:fButtonColor="@color/fbutton_color_green_sea"
+            app:fButtonColor="@color/button_color_green_sea"
             app:shadowColor="@android:color/black"
             app:shadowEnabled="true"
             app:shadowHeight="5dp" />

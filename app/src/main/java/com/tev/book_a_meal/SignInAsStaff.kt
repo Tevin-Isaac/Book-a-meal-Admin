@@ -41,62 +41,62 @@ class SignInAsStaff : AppCompatActivity() {
         edtPassword = findViewById<View>(R.id.edtPassword) as MaterialEditText
         edtPassword!!.inputType =
             InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-        edtPassword!!.transformationMethod = PasswordTransformationMethod()
-        btnSignInAsStaff = findViewById<View>(R.id.btnSignInAsStaff) as FButton
+        edtPassword!!.transformationMethod = PasswordTransformationMethod()}}
+//        btnSignInAsStaff = findViewById<View>(R.id.btnSignInAsStaff) as FButton
 
-        //Init firebase
-        db = FirebaseDatabase.getInstance()
-        users = db!!.getReference("User")
-        btnSignInAsStaff!!.setOnClickListener {
-            signInUser(
-                edtPhone!!.text.toString(),
-                edtPassword!!.text.toString()
-            )
-        }
-    }
+        //Init database
+//        db = Database.getInstance()
+//        users = db!!.getReference("User")
+//        btnSignInAsStaff!!.setOnClickListener {
+//            signInUser(
+//                edtPhone!!.text.toString(),
+//                edtPassword!!.text.toString()
+//            )
+//        }
+//    }
 
-    private fun signInUser(phone: String, password: String) {
-        val mDialog = ProgressDialog(this@SignInAsStaff)
-        mDialog.setMessage("Please waiting...")
-        mDialog.show()
-        users!!.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (dataSnapshot.child(phone).exists()) {
-                    mDialog.dismiss()
-                    val user = dataSnapshot.child(phone)
-                        .getValue(
-                            User::class.java
-                        )
-                    user!!.phone = phone
-                    if (Boolean.parseBoolean(user.isstaff)) {
-
-                        //If isStaff = true
-                        if (user.password == password) {
-                            val login = Intent(this@SignInAsStaff, Home::class.java)
-                            Common.currentUser = user
-                            startActivity(login)
-                            finish()
-                        } else Toast.makeText(
-                            this@SignInAsStaff,
-                            "Wrong password!",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else Toast.makeText(
-                        this@SignInAsStaff,
-                        "Please login with Staff account",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    mDialog.dismiss()
-                    Toast.makeText(
-                        this@SignInAsStaff,
-                        "User not exist in Database!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {}
-        })
-    }
-}
+//    private fun signInUser(phone: String, password: String) {
+//        val mDialog = ProgressDialog(this@SignInAsStaff)
+//        mDialog.setMessage("Please waiting...")
+//        mDialog.show()
+//        users!!.addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                if (dataSnapshot.child(phone).exists()) {
+//                    mDialog.dismiss()
+//                    val user = dataSnapshot.child(phone)
+//                        .getValue(
+////                            User::class.java
+//                        )
+////                    user!!.phone = phone
+//                    if (Boolean.parseBoolean(user.isstaff)) {
+//
+//                        //If isStaff = true
+////                        if (user.password == password) {
+//                            val login = Intent(this@SignInAsStaff, Home::class.java)
+//                            Common.currentUser = user
+//                            startActivity(login)
+//                            finish()
+//                        } else Toast.makeText(
+//                            this@SignInAsStaff,
+//                            "Wrong password!",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                    } else Toast.makeText(
+//                        this@SignInAsStaff,
+//                        "Please login with Staff account",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                } else {
+//                    mDialog.dismiss()
+//                    Toast.makeText(
+//                        this@SignInAsStaff,
+//                        "User not exist in Database!",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//            }
+//
+//            override fun onCancelled(databaseError: DatabaseError) {}
+//        })
+//    }
+//}

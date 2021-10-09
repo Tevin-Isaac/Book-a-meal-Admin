@@ -10,7 +10,7 @@ class Request {
     var comment: String? = null
     var paymentMethod: String? = null
     var latLng: String? = null
-    private var foods: List<Order>? = null
+    var foods: List<Order>? = null
 
     constructor() {}
     constructor(

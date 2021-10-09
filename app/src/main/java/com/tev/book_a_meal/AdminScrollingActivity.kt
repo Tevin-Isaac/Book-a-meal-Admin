@@ -5,9 +5,8 @@ package com.tev.book_a_meal
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-
 import android.view.View
-import android.widget.*
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
@@ -30,7 +29,7 @@ class AdminScrollingActivity : AppCompatActivity() {
         )
         setContentView(R.layout.activity_admin_scrolling)
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
-        setSupportActionBar(toolbar)
+//        setSupportActionBar(toolbar)
         val fab = findViewById<View>(R.id.fab) as FloatingActionButton
         fab.setOnClickListener {
             val emailIntent = Intent(Intent.ACTION_SEND)

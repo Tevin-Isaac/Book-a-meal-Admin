@@ -2,9 +2,8 @@ package com.tev.book_a_meal
 
 import android.content.Context
 import android.os.Bundle
-
 import android.view.View
-import android.widget.*
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -55,8 +54,8 @@ class OrderDetail : AppCompatActivity() {
             order_total!!.text = Common.currentRequest!!.total
             order_address!!.text = Common.currentRequest!!.address
             order_comment!!.text = Common.currentRequest!!.comment
-            val adapter = OrderDetailAdapter(Common.currentRequest!!.foods)
-            adapter.notifyDataSetChanged()
+            val adapter = Common.currentRequest!!.foods?.let { OrderDetailAdapter(it) }
+//            adapter.notifyDataSetChanged()
             lstFoods!!.adapter = adapter
         }
     }
