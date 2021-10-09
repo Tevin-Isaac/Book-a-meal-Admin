@@ -1,142 +1,54 @@
 package com.tev.book_a_meal
 
-import com.tev.book_a_meal.Model.Order
-import com.tev.book_a_meal.Remote.APIService
-import com.tev.book_a_meal.Remote.FCMRetrofitClient
-import com.tev.book_a_meal.Remote.IGeoCoordinates
-import com.tev.book_a_meal.Remote.RetrofitClient
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
-import android.graphics.Bitmap
-import org.json.JSONObject
-import org.json.JSONArray
-import com.google.android.gms.maps.model.LatLng
-import org.json.JSONException
-import android.content.ContextWrapper
-import android.app.NotificationManager
-import android.annotation.TargetApi
-import android.os.Build
-import android.app.NotificationChannel
-import com.tev.book_a_meal.Helper.NotificationHelper
-import android.app.PendingIntent
-import com.tev.book_a_meal.R
-import retrofit2.http.POST
-import com.tev.book_a_meal.Model.Sender
-import com.tev.book_a_meal.Model.MyResponse
-import retrofit2.Retrofit
-import retrofit2.converter.scalars.ScalarsConverterFactory
-import retrofit2.http.GET
-import retrofit2.converter.gson.GsonConverterFactory
-import com.google.firebase.iid.FirebaseInstanceIdService
-import com.google.firebase.iid.FirebaseInstanceId
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.messaging.FirebaseMessagingService
-import com.google.firebase.messaging.RemoteMessage
-import android.content.Intent
-import com.tev.book_a_meal.OrderStatus
-import android.media.RingtoneManager
-import com.tev.book_a_meal.MainActivity
-import android.support.v7.app.AppCompatActivity
-import android.support.design.widget.NavigationView
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import com.firebase.ui.database.FirebaseRecyclerAdapter
-import com.tev.book_a_meal.ViewHolder.MenuViewHolder
-import android.support.v7.widget.RecyclerView
-import com.rengwuxian.materialedittext.MaterialEditText
-import info.hoang8f.widget.FButton
-import android.support.v4.widget.DrawerLayout
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
-import android.os.Bundle
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig
-import android.support.design.widget.FloatingActionButton
-import android.support.v7.widget.LinearLayoutManager
-import android.content.DialogInterface
-import android.support.design.widget.Snackbar
-import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.firebase.storage.OnProgressListener
-import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.squareup.picasso.Picasso
-import com.tev.book_a_meal.Interface.ItemClickListener
-import com.tev.book_a_meal.FoodList
-import android.support.v4.view.GravityCompat
-import com.tev.book_a_meal.BannerActivity
-import com.tev.book_a_meal.SendMessage
-import com.tev.book_a_meal.ScrollingActivity
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import android.view.View.OnCreateContextMenuListener
-import android.view.ContextMenu.ContextMenuInfo
-import com.tev.book_a_meal.ViewHolder.MyViewHolder
-import com.tev.book_a_meal.Model.Food
-import com.tev.book_a_meal.ViewHolder.FoodViewHolder
-import com.tev.book_a_meal.ViewHolder.OrderDetailAdapter
-import com.tev.book_a_meal.ViewHolder.OrderViewHolder
-import com.jaredrummler.materialspinner.MaterialSpinner
-import com.tev.book_a_meal.OrderDetail
-import com.tev.book_a_meal.TrackingOrder
-import android.text.TextUtils
-import com.tev.book_a_meal.ViewHolder.ShowCommentViewHolder
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener
-import com.tev.book_a_meal.Common.NumberOfFood
-import com.tev.book_a_meal.SignInAsStaff
-import com.tev.book_a_meal.SignInAsAdmin
-import com.tev.book_a_meal.ViewHolder.UserViewHolder
-import android.text.InputType
-import android.text.method.PasswordTransformationMethod
-import com.tev.book_a_meal.MainAdminActivity
-import com.tev.book_a_meal.Home
-import android.support.v4.app.FragmentActivity
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks
-import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.common.api.GoogleApiClient
-import android.support.v4.app.ActivityCompat
-import android.content.pm.PackageManager
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.gms.maps.CameraUpdateFactory
-import android.graphics.BitmapFactory
+import android.content.Intent
 import android.net.Uri
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.tev.book_a_meal.TrackingOrder.ParserTask
-import kotlin.jvm.Synchronized
-import com.google.android.gms.common.GooglePlayServicesUtil
-import com.google.android.gms.common.ConnectionResult
-import android.os.AsyncTask
+import android.os.Bundle
 import android.view.*
 import android.widget.*
-import com.com.tev.book_a_meal.Common.DirectionJSONParser
-import com.google.android.gms.maps.model.PolylineOptions
-import com.com.tev.book_a_meal.Model.Banner
-import com.tev.book_a_meal.ViewHolder.BannerViewHolder
-import com.google.android.gms.tasks.OnCompleteListener
-import com.tev.book_a_meal.ManageAccount
-import com.tev.book_a_meal.ViewComment
-import com.tev.book_a_meal.ShipperManagement
-import com.tev.book_a_meal.AdminScrollingActivity
-import com.tev.book_a_meal.Model.Shipper
-import com.tev.book_a_meal.ViewHolder.ShipperViewHolder
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter
+import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.android.gms.common.internal.service.Common
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.*
+
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.rengwuxian.materialedittext.MaterialEditText
+import com.squareup.picasso.Picasso
+import com.tev.book_a_meal.Common.Common.DELETE
+import com.tev.book_a_meal.Common.Common.PICK_IMAGE_REQUEST
+import com.tev.book_a_meal.Common.Common.UPDATE
+import com.tev.book_a_meal.Common.Common.currentUser
+import com.tev.book_a_meal.MainAdminActivity
+import com.tev.book_a_meal.Model.Category
+import com.tev.book_a_meal.Model.Token
+import com.tev.book_a_meal.ViewHolder.MenuViewHolder
+
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.util.*
 
 class MainAdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     var txtFullNameAdmin: TextView? = null
 
-    //Firebase
-    var database: FirebaseDatabase? = null
-    var categories: DatabaseReference? = null
-    var storage: FirebaseStorage? = null
-    var storageReference: StorageReference? = null
-    var adapter: FirebaseRecyclerAdapter<Category?, MenuViewHolder?>? = null
+//    //Firebase
+//    var database: FirebaseDatabase? = null
+//    var categories: DatabaseReference? = null
+//    var storage: FirebaseStorage? = null
+//    var storageReference: StorageReference? = null
+//    var adapter: FirebaseRecyclerAdapter<Category?, MenuViewHolder?>? = null
 
     //View
     var recycler_menu_admin: RecyclerView? = null
@@ -172,10 +84,10 @@ class MainAdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         setSupportActionBar(toolbar)
 
         //Init firebase
-        database = FirebaseDatabase.getInstance()
-        categories = database!!.getReference("Category")
-        storage = FirebaseStorage.getInstance()
-        storageReference = storage!!.reference
+        var database = FirebaseDatabase.getInstance()
+        var categories = database!!.getReference("Category")
+        var storage = FirebaseStorage.getInstance()
+        var storageReference = storage!!.reference
         val fab = findViewById<View>(R.id.fab_admin) as FloatingActionButton
         fab.setOnClickListener { showDialog() }
         drawer_admin = findViewById<View>(R.id.drawer_layout_admin) as DrawerLayout

@@ -55,4 +55,6 @@
         "Examiner: Miss Nordaliela Binti Mohd Rusli\n"
 
     </string>
+    <string name="sign_in_as_staff">Sign In As Staff</string>
+    <string name="sign_in_as_admin">Sign In As Admin</string>
 </resources>
