@@ -7,21 +7,18 @@ import android.text.TextUtils
 import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.firebase.ui.database.FirebaseRecyclerAdapter
-import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.rengwuxian.materialedittext.MaterialEditText
+import com.tev.book_a_meal.Common.Common
 import com.tev.book_a_meal.Model.Shipper
 import com.tev.book_a_meal.ShipperManagement
-import com.tev.book_a_meal.ViewHolder.ShipperViewHolder
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.util.*
@@ -32,7 +29,7 @@ class ShipperManagement : AppCompatActivity() {
     var shippers: DatabaseReference? = null
     var recyclerView: RecyclerView? = null
     var layoutManager: RecyclerView.LayoutManager? = null
-    var adapter: FirebaseRecyclerAdapter<Shipper?, ShipperViewHolder?>? = null
+//    var adapter: RecyclerAdapter<Shipper?, ShipperViewHolder?>? = null
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
@@ -62,70 +59,70 @@ class ShipperManagement : AppCompatActivity() {
         shippers = database!!.getReference(Common.SHIPPER_TABLE)
 
         //load all shipper
-        loadAllShipper()
+//        loadAllShipper()
     }
 
-    private fun loadAllShipper() {
-        val allShipper = FirebaseRecyclerOptions.Builder<Shipper>()
-            .setQuery(shippers!!, Shipper::class.java)
-            .build()
-        adapter = object : FirebaseRecyclerAdapter<Shipper, ShipperViewHolder>(allShipper) {
-            override fun onBindViewHolder(
-                holder: ShipperViewHolder,
-                position: Int,
-                model: Shipper
-            ) {
-                holder.shipper_phone.text = model.phone
-                holder.shipper_name.text = model.name
-                holder.shipper_password.text = model.password
-                holder.btn_edit.setOnClickListener {
-                    showEditDialog(
-                        adapter!!.getRef(position).key,
-                        model
-                    )
-                }
-                holder.btn_remove.setOnClickListener {
-                    showDeleteAccountDialog(
-                        adapter!!.getRef(
-                            position
-                        ).key
-                    )
-                }
-            }
-
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShipperViewHolder {
-                val itemView = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.shipper_layout, parent, false)
-                return ShipperViewHolder(itemView)
-            }
-        }
-        adapter.startListening()
-        recyclerView!!.adapter = adapter
-    }
-
-    private fun showDeleteAccountDialog(key: String?) {
-        val alertDialog = AlertDialog.Builder(
-            this@ShipperManagement,
-            R.style.Theme_AppCompat_DayNight_Dialog_Alert
-        )
-        alertDialog.setTitle("Confirm Delete?")
-        val inflater = this.layoutInflater
-        val confirm_delete_layout = inflater.inflate(R.layout.confirm_delete_layout, null)
-        alertDialog.setView(confirm_delete_layout)
-        alertDialog.setIcon(R.drawable.ic_delete_black_24dp)
-        alertDialog.setPositiveButton("DELETE") { dialog, which ->
-            dialog.dismiss()
-            shippers!!.child(key!!).removeValue()
-            Toast.makeText(
-                this@ShipperManagement,
-                "Account Delete Successfully!",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-        alertDialog.setNegativeButton("CANCEL") { dialog, which -> dialog.dismiss() }
-        alertDialog.show()
-        adapter!!.notifyDataSetChanged()
-    }
+//    private fun loadAllShipper() {
+////        val allShipper = RecyclerOptions.Builder<Shipper>()
+//            .setQuery(shippers!!, Shipper::class.java)
+//            .build()
+//        adapter = object : RecyclerAdapter<Shipper, ShipperViewHolder>(allShipper) {
+//            override fun onBindViewHolder(
+//                holder: ShipperViewHolder,
+//                position: Int,
+//                model: Shipper
+//            ) {
+//                holder.shipper_phone.text = model.phone
+//                holder.shipper_name.text = model.name
+//                holder.shipper_password.text = model.password
+//                holder.btn_edit.setOnClickListener {
+//                    showEditDialog(
+//                        adapter!!.getRef(position).key,
+//                        model
+//                    )
+//                }
+//                holder.btn_remove.setOnClickListener {
+//                    showDeleteAccountDialog(
+//                        adapter!!.getRef(
+//                            position
+//                        ).key
+//                    )
+//                }
+//            }
+//
+//            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShipperViewHolder {
+//                val itemView = LayoutInflater.from(parent.context)
+//                    .inflate(R.layout.shipper_layout, parent, false)
+//                return ShipperViewHolder(itemView)
+//            }
+//        }
+//        adapter.startListening()
+//        recyclerView!!.adapter = adapter
+//    }
+//
+//    private fun showDeleteAccountDialog(key: String?) {
+//        val alertDialog = AlertDialog.Builder(
+//            this@ShipperManagement,
+//            R.style.Theme_AppCompat_DayNight_Dialog_Alert
+//        )
+//        alertDialog.setTitle("Confirm Delete?")
+//        val inflater = this.layoutInflater
+//        val confirm_delete_layout = inflater.inflate(R.layout.confirm_delete_layout, null)
+//        alertDialog.setView(confirm_delete_layout)
+//        alertDialog.setIcon(R.drawable.ic_delete_black_24dp)
+//        alertDialog.setPositiveButton("DELETE") { dialog, which ->
+//            dialog.dismiss()
+//            shippers!!.child(key!!).removeValue()
+//            Toast.makeText(
+//                this@ShipperManagement,
+//                "Account Delete Successfully!",
+//                Toast.LENGTH_SHORT
+//            ).show()
+//        }
+//        alertDialog.setNegativeButton("CANCEL") { dialog, which -> dialog.dismiss() }
+//        alertDialog.show()
+//        adapter!!.notifyDataSetChanged()
+//    }
 
     private fun showEditDialog(key: String?, model: Shipper) {
         val alertDialog = AlertDialog.Builder(
@@ -165,13 +162,13 @@ class ShipperManagement : AppCompatActivity() {
             } else if (TextUtils.isEmpty(shipper_password.text)) {
                 Toast.makeText(this@ShipperManagement, "Password is Empty!", Toast.LENGTH_SHORT)
                     .show()
-            } else if (shipper_phone.text.length < 11) {
+//            } else if (shipper_phone.text.length < 11) {
                 Toast.makeText(
                     this@ShipperManagement,
                     "Phone Number cannot less than 11 digts!",
                     Toast.LENGTH_SHORT
                 ).show()
-            } else if (shipper_phone.text.length > 13) {
+//            } else if (shipper_phone.text.length > 13) {
                 Toast.makeText(
                     this@ShipperManagement,
                     "Phone Number cannot exceed 13 digits!",
@@ -236,13 +233,13 @@ class ShipperManagement : AppCompatActivity() {
             } else if (TextUtils.isEmpty(shipper_password.text)) {
                 Toast.makeText(this@ShipperManagement, "Password is Empty!", Toast.LENGTH_SHORT)
                     .show()
-            } else if (shipper_phone.text.length < 11) {
+//            } else if (shipper_phone.text.length < 11) {
                 Toast.makeText(
                     this@ShipperManagement,
                     "Phone Number cannot less than 11 digts!",
                     Toast.LENGTH_SHORT
                 ).show()
-            } else if (shipper_phone.text.length > 13) {
+//            } else if (shipper_phone.text.length > 13) {
                 Toast.makeText(
                     this@ShipperManagement,
                     "Phone Number cannot exceed 13 digits!",

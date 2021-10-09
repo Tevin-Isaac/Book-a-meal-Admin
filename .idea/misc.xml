@@ -8,7 +8,7 @@
         <entry key="app/src/main/res/layout/activity_food_list.xml" value="0.15" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_inc_account.xml" value="0.15" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main_admin.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_manage_account.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_order_detail.xml" value="0.25" />
@@ -20,7 +20,7 @@
         <entry key="app/src/main/res/layout/activity_show_management.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.16" />
         <entry key="app/src/main/res/layout/activity_sign_in_admin.xml" value="0.15" />
-        <entry key="app/src/main/res/layout/activity_tracking_order.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_tracking_order.xml" value="0.1" />
         <entry key="app/src/main/res/layout/add_bar_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/add_bar_main_admin.xml" value="0.1" />
         <entry key="app/src/main/res/layout/add_new_banner.xml" value="0.22" />
@@ -33,23 +33,24 @@
         <entry key="app/src/main/res/layout/confirm_signout_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/content_admin_scrolling.xml" value="0.25" />
         <entry key="app/src/main/res/layout/content_home.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/content_main_admin.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/content_main_admin.xml" value="0.12" />
+        <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.25" />
         <entry key="app/src/main/res/layout/create_account_layout.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/create_shipper_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/create_shipper_layout.xml" value="0.15" />
         <entry key="app/src/main/res/layout/food_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/menu_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/nav_header_home.xml" value="0.12" />
-        <entry key="app/src/main/res/layout/nav_header_main_admin.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/nav_header_main_admin.xml" value="0.12" />
         <entry key="app/src/main/res/layout/order_detail_layout.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/order_layout.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/shipper_layout.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/show_comment_layout.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/update_order_layout.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/order_layout.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/shipper_layout.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/show_comment_layout.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/update_order_layout.xml" value="0.18128654970760233" />
         <entry key="app/src/main/res/menu/activity_home_drawer.xml" value="0.33" />
         <entry key="app/src/main/res/menu/activity_main_admin_drawer.xml" value="0.33" />
         <entry key="app/src/main/res/menu/menu_admin_scrolling.xml" value="0.25" />
         <entry key="app/src/main/res/menu/menu_scrolling.xml" value="0.1765625" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>
     </option>
   </component>

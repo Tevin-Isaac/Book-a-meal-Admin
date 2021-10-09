@@ -120,7 +120,7 @@
                 app:shadowColor="@android:color/black"
                 app:shadowEnabled="true"
                 app:shadowHeight="5dp"
-                app:fButtonColor="@color/fbutton_color_green_sea" />
+                app:fButtonColor="@color/button_color_green_sea" />
 
             <info.hoang8f.widget.FButton
                 android:id="@+id/btnRemove"
@@ -133,7 +133,7 @@
                 app:shadowColor="@android:color/black"
                 app:shadowEnabled="true"
                 app:shadowHeight="5dp"
-                app:fButtonColor="@color/fbutton_color_green_sea" />
+                app:fButtonColor="@color/button_color_green_sea" />
 
             <info.hoang8f.widget.FButton
                 android:id="@+id/btnDetail"
@@ -146,7 +146,7 @@
                 app:shadowColor="@android:color/black"
                 app:shadowEnabled="true"
                 app:shadowHeight="5dp"
-                app:fButtonColor="@color/fbutton_color_green_sea" />
+                app:fButtonColor="@color/button_color_green_sea" />
 
             <info.hoang8f.widget.FButton
                 android:id="@+id/btnDirection"
@@ -155,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:text="Direction"
                 android:textColor="@color/colorWhite"
-                app:fButtonColor="@color/fbutton_color_green_sea"
+                app:fButtonColor="@color/button_color_green_sea"
                 app:cornerRadius="8dp"
                 app:shadowColor="@android:color/black"
                 app:shadowEnabled="true"

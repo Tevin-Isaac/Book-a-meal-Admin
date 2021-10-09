@@ -43,10 +43,10 @@ class SignInAsAdmin : AppCompatActivity() {
         edtPassword!!.inputType =
             InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
         edtPassword!!.transformationMethod = PasswordTransformationMethod()
-        btnSignInAsAdmin = findViewById<View>(R.id.btnSignInAsAdmin) as FButton
+//        btnSignInAsAdmin = findViewById<View>(R.id.btnSignInAsAdmin) as FButton
 
-        //Init firebase
-        db = FirebaseDatabase.getInstance()
+        //Init dataebase
+//        db = baseDatabase.getInstance()
         users = db!!.getReference("User")
         btnSignInAsAdmin!!.setOnClickListener {
             signInUser(
@@ -74,7 +74,7 @@ class SignInAsAdmin : AppCompatActivity() {
                         //If isAdmin = true
                         if (user.password == password) {
                             val login = Intent(this@SignInAsAdmin, MainAdminActivity::class.java)
-                            Common.currentUser = user
+//                            Common.currentUser = user
                             startActivity(login)
                             finish()
                         } else Toast.makeText(
