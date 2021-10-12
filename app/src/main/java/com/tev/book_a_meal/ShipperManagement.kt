@@ -14,9 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.rengwuxian.materialedittext.MaterialEditText
-import com.tev.book_a_meal.Common.Common
 import com.tev.book_a_meal.Model.Shipper
 import com.tev.book_a_meal.ShipperManagement
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
@@ -25,7 +23,7 @@ import java.util.*
 
 class ShipperManagement : AppCompatActivity() {
     var fabAdd: FloatingActionButton? = null
-    var database: FirebaseDatabase? = null
+//    var database: Database? = null
     var shippers: DatabaseReference? = null
     var recyclerView: RecyclerView? = null
     var layoutManager: RecyclerView.LayoutManager? = null
@@ -55,74 +53,74 @@ class ShipperManagement : AppCompatActivity() {
         recyclerView!!.layoutManager = layoutManager
 
         //Database
-        database = FirebaseDatabase.getInstance()
-        shippers = database!!.getReference(Common.SHIPPER_TABLE)
+//        database = Database.getInstance()
+//        shippers = database!!.getReference(Common.SHIPPER_TABLE)
 
         //load all shipper
 //        loadAllShipper()
     }
 
-//    private fun loadAllShipper() {
-////        val allShipper = RecyclerOptions.Builder<Shipper>()
-//            .setQuery(shippers!!, Shipper::class.java)
-//            .build()
-//        adapter = object : RecyclerAdapter<Shipper, ShipperViewHolder>(allShipper) {
-//            override fun onBindViewHolder(
-//                holder: ShipperViewHolder,
-//                position: Int,
-//                model: Shipper
-//            ) {
-//                holder.shipper_phone.text = model.phone
-//                holder.shipper_name.text = model.name
-//                holder.shipper_password.text = model.password
-//                holder.btn_edit.setOnClickListener {
-//                    showEditDialog(
-//                        adapter!!.getRef(position).key,
-//                        model
-//                    )
-//                }
-//                holder.btn_remove.setOnClickListener {
-//                    showDeleteAccountDialog(
-//                        adapter!!.getRef(
-//                            position
-//                        ).key
-//                    )
-//                }
-//            }
-//
-//            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShipperViewHolder {
-//                val itemView = LayoutInflater.from(parent.context)
-//                    .inflate(R.layout.shipper_layout, parent, false)
-//                return ShipperViewHolder(itemView)
-//            }
-//        }
-//        adapter.startListening()
-//        recyclerView!!.adapter = adapter
-//    }
-//
-//    private fun showDeleteAccountDialog(key: String?) {
-//        val alertDialog = AlertDialog.Builder(
-//            this@ShipperManagement,
-//            R.style.Theme_AppCompat_DayNight_Dialog_Alert
-//        )
-//        alertDialog.setTitle("Confirm Delete?")
-//        val inflater = this.layoutInflater
-//        val confirm_delete_layout = inflater.inflate(R.layout.confirm_delete_layout, null)
-//        alertDialog.setView(confirm_delete_layout)
-//        alertDialog.setIcon(R.drawable.ic_delete_black_24dp)
-//        alertDialog.setPositiveButton("DELETE") { dialog, which ->
-//            dialog.dismiss()
-//            shippers!!.child(key!!).removeValue()
-//            Toast.makeText(
-//                this@ShipperManagement,
-//                "Account Delete Successfully!",
-//                Toast.LENGTH_SHORT
-//            ).show()
-//        }
-//        alertDialog.setNegativeButton("CANCEL") { dialog, which -> dialog.dismiss() }
-//        alertDialog.show()
-//        adapter!!.notifyDataSetChanged()
-//    }
+    private fun loadAllShipper() {
+//        val allShipper = RecyclerOptions.Builder<Shipper>()
+            .setQuery(shippers!!, Shipper::class.java)
+            .build()
+        adapter = object : RecyclerAdapter<Shipper, ShipperViewHolder>(allShipper) {
+            override fun onBindViewHolder(
+                holder: ShipperViewHolder,
+                position: Int,
+                model: Shipper
+            ) {
+                holder.shipper_phone.text = model.phone
+                holder.shipper_name.text = model.name
+                holder.shipper_password.text = model.password
+                holder.btn_edit.setOnClickListener {
+                    showEditDialog(
+                        adapter!!.getRef(position).key,
+                        model
+                    )
+                }
+                holder.btn_remove.setOnClickListener {
+                    showDeleteAccountDialog(
+                        adapter!!.getRef(
+                            position
+                        ).key
+                    )
+                }
+            }
+
+            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShipperViewHolder {
+                val itemView = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.shipper_layout, parent, false)
+                return ShipperViewHolder(itemView)
+            }
+        }
+        adapter.startListening()
+        recyclerView!!.adapter = adapter
+    }
+
+    private fun showDeleteAccountDialog(key: String?) {
+        val alertDialog = AlertDialog.Builder(
+            this@ShipperManagement,
+            R.style.Theme_AppCompat_DayNight_Dialog_Alert
+        )
+        alertDialog.setTitle("Confirm Delete?")
+        val inflater = this.layoutInflater
+        val confirm_delete_layout = inflater.inflate(R.layout.confirm_delete_layout, null)
+        alertDialog.setView(confirm_delete_layout)
+        alertDialog.setIcon(R.drawable.ic_delete_black_24dp)
+        alertDialog.setPositiveButton("DELETE") { dialog, which ->
+            dialog.dismiss()
+            shippers!!.child(key!!).removeValue()
+            Toast.makeText(
+                this@ShipperManagement,
+                "Account Delete Successfully!",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        alertDialog.setNegativeButton("CANCEL") { dialog, which -> dialog.dismiss() }
+        alertDialog.show()
+        adapter!!.notifyDataSetChanged()
+    }
 
     private fun showEditDialog(key: String?, model: Shipper) {
         val alertDialog = AlertDialog.Builder(

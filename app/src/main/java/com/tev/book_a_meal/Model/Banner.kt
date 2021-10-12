@@ -13,3 +13,5 @@ class Banner {
         this.image = image
     }
 }
+
+*
