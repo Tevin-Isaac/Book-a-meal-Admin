@@ -33,11 +33,11 @@ class AdminScrollingActivity : AppCompatActivity() {
         val fab = findViewById<View>(R.id.fab) as FloatingActionButton
         fab.setOnClickListener {
             val emailIntent = Intent(Intent.ACTION_SEND)
-            emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf("syetchau@hotmail.com"))
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf("book-a-meal@gmail.com"))
             emailIntent.putExtra(Intent.EXTRA_CC, arrayOf(""))
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "")
             emailIntent.putExtra(Intent.EXTRA_TEXT, "")
-            emailIntent.type = "message/rfc822"
+            emailIntent.type = "message////////"
             startActivity(Intent.createChooser(emailIntent, "Choose email..."))
         }
     }

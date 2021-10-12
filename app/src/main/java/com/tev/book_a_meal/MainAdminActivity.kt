@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.rengwuxian.materialedittext.MaterialEditText
 import com.tev.book_a_meal.Common.Common
 import com.tev.book_a_meal.MainAdminActivity
@@ -100,19 +101,19 @@ class MainAdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         recycler_menu_admin!!.setHasFixedSize(true)
         layoutManager = LinearLayoutManager(this)
         recycler_menu_admin!!.layoutManager = layoutManager
-//        loadMenu()
+        loadMenu()
 
         //send token
-//        updateToken(eInstanceId.getInstance().token)
+        updateToken(eInstanceId.getInstance().token)
     }
 
-    private fun updateToken(token: String?) {
-//        val db = Database.getInstance()
-//        val tokens = db.getReference("Tokens")
-        val data = Token(token, true)
-        // false because token send from client app
-//        tokens.child(Common.currentUser!!.phone).setValue(data)
-    }
+//    private fun updateToken(token: String?) {
+////        val db = Database.getInstance()
+////        val tokens = db.getReference("Tokens")
+//        val data = Token(token, true)
+//        // false because token send from client app
+////        tokens.child(Common.currentUser!!.phone).setValue(data)
+//    }
 
     private fun showDialog() {
         val alertDialog = AlertDialog.Builder(
@@ -124,45 +125,45 @@ class MainAdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         val inflater = this.layoutInflater
         val add_menu_layout = inflater.inflate(R.layout.add_new_menu_layout, null)
         edtName = add_menu_layout.findViewById(R.id.edtName)
-//        btnSelect = add_menu_layout.findViewById(R.id.btnSelect)
-//        btnUpload = add_menu_layout.findViewById(R.id.btnUpload)
+        btnSelect = add_menu_layout.findViewById(R.id.btnSelect)
+        btnUpload = add_menu_layout.findViewById(R.id.btnUpload)
 
         //Event for button
-//        btnSelect.setOnClickListener(View.OnClickListener { //let users select image from gallery and save URL of this image
-//            chooseImage()
-//        })
-//        btnUpload.setOnClickListener(View.OnClickListener { //upload image
-//            uploadImage()
-//        })
-//        alertDialog.setView(add_menu_layout)
-//        alertDialog.setIcon(R.drawable.ic_shopping_cart_black_24dp)
-//
-//        //set Button
-//        alertDialog.setPositiveButton("YES") { dialog, which ->
-//            dialog.dismiss()
-//
-//            //create new category
-//            if (newCategory != null) {
-//                categories!!.push().setValue(newCategory)
-//                Snackbar.make(
-//                    drawer_admin!!, " New Category " + newCategory!!.name + " was added ",
-//                    Snackbar.LENGTH_SHORT
-//                ).show()
-//            }
-//        }
-//        alertDialog.setNegativeButton("NO") { dialog, which -> dialog.dismiss() }
-//        alertDialog.show()
-//    }
+        btnSelect.setOnClickListener(View.OnClickListener { //let users select image from gallery and save URL of this image
+            chooseImage()
+        })
+        btnUpload.setOnClickListener(View.OnClickListener { //upload image
+            uploadImage()
+        })
+        alertDialog.setView(add_menu_layout)
+        alertDialog.setIcon(R.drawable.ic_shopping_cart_black_24dp)
 
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if (requestCode == Common.PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
-//            saveUri = data.data
-//            btnSelect!!.text = "Image Selected!"
-//        }
-//    }
+        //set Button
+        alertDialog.setPositiveButton("YES") { dialog, which ->
+            dialog.dismiss()
 
-//    private fun chooseImage() {
+            //create new category
+            if (newCategory != null) {
+                categories!!.push().setValue(newCategory)
+                Snackbar.make(
+                    drawer_admin!!, " New Category " + newCategory!!.name + " was added ",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+        }
+        alertDialog.setNegativeButton("NO") { dialog, which -> dialog.dismiss() }
+        alertDialog.show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == Common.PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
+            saveUri = data.data
+            btnSelect!!.text = "Image Selected!"
+        }
+    }
+
+    private fun chooseImage() {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
@@ -172,68 +173,68 @@ class MainAdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         )
     }
 
-//    private fun uploadImage() {
-//        if (saveUri != null) {
-//            val mDialog = ProgressDialog(this)
-//            mDialog.setMessage("Uploading...")
-//            mDialog.show()
-//            val imageName = UUID.randomUUID().toString()
-//            val imageFolder = storageReference!!.child("images/$imageName")
-//            imageFolder.putFile(saveUri!!).addOnSuccessListener {
-//                mDialog.dismiss()
-//                Toast.makeText(this@MainAdminActivity, "Uploaded!!!", Toast.LENGTH_SHORT).show()
-//                imageFolder.downloadUrl.addOnSuccessListener { uri -> //set value for newCategory if image upload and we can get download link
-//                    newCategory = Category(edtName!!.text.toString(), uri.toString())
-//                }
-//            }
-//                .addOnFailureListener { e ->
-//                    mDialog.dismiss()
-//                    Toast.makeText(this@MainAdminActivity, "" + e.message, Toast.LENGTH_SHORT)
-//                        .show()
-//                }
-//                .addOnProgressListener { taskSnapshot ->
-//                    val progress =
-//                        (100 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount).toDouble()
-//                    mDialog.setMessage("Uploading$progress % ")
-//                }
-//        }
-//    }
+    private fun uploadImage() {
+        if (saveUri != null) {
+            val mDialog = ProgressDialog(this)
+            mDialog.setMessage("Uploading...")
+            mDialog.show()
+            val imageName = UUID.randomUUID().toString()
+            val imageFolder = storageReference!!.child("images/$imageName")
+            imageFolder.putFile(saveUri!!).addOnSuccessListener {
+                mDialog.dismiss()
+                Toast.makeText(this@MainAdminActivity, "Uploaded!!!", Toast.LENGTH_SHORT).show()
+                imageFolder.downloadUrl.addOnSuccessListener { uri -> //set value for newCategory if image upload and we can get download link
+                    newCategory = Category(edtName!!.text.toString(), uri.toString())
+                }
+            }
+                .addOnFailureListener { e ->
+                    mDialog.dismiss()
+                    Toast.makeText(this@MainAdminActivity, "" + e.message, Toast.LENGTH_SHORT)
+                        .show()
+                }
+                .addOnProgressListener { taskSnapshot ->
+                    val progress =
+                        (100 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount).toDouble()
+                    mDialog.setMessage("Uploading$progress % ")
+                }
+        }
+    }
 
-//    private fun loadMenu() {
-//        val options = RecyclerOptions.Builder<Category>()
-//            .setQuery(categories!!, Category::class.java)
-//            .build()
-//        adapter = object : RecyclerAdapter<Category, MenuViewHolder>(options) {
-//            override fun onBindViewHolder(
-//                viewHolder: MenuViewHolder,
-//                position: Int,
-//                model: Category
-//            ) {
-//                viewHolder.txtMenuName.text = model.name
-//                Picasso.with(this@MainAdminActivity).load(model.image).into(viewHolder.imageView)
-//                viewHolder.setItemClickListener { view, position, isLongClick -> //send category Id and start new activity
-//                    val foodList = Intent(this@MainAdminActivity, FoodList::class.java)
-//                    foodList.putExtra("CategoryId", adapter!!.getRef(position).key)
-//                    startActivity(foodList)
-//                }
-//            }
-//
-//            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
-//                val itemView = LayoutInflater.from(parent.context)
-//                    .inflate(R.layout.menu_item, parent, false)
-//                return MenuViewHolder(itemView)
-//            }
-//        }
+    private fun loadMenu() {
+        val options = RecyclerOptions.Builder<Category>()
+            .setQuery(categories!!, Category::class.java)
+            .build()
+        adapter = object : RecyclerAdapter<Category, MenuViewHolder>(options) {
+            override fun onBindViewHolder(
+                viewHolder: MenuViewHolder,
+                position: Int,
+                model: Category
+            ) {
+                viewHolder.txtMenuName.text = model.name
+                Picasso.with(this@MainAdminActivity).load(model.image).into(viewHolder.imageView)
+                viewHolder.setItemClickListener { view, position, isLongClick -> //send category Id and start new activity
+                    val foodList = Intent(this@MainAdminActivity, FoodList::class.java)
+                    foodList.putExtra("CategoryId", adapter!!.getRef(position).key)
+                    startActivity(foodList)
+                }
+            }
+
+            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
+                val itemView = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.menu_item, parent, false)
+                return MenuViewHolder(itemView)
+            }
+        }
 
         //refresh data if have data changed
-//        adapter.startListening()
-//        adapter.notifyDataSetChanged()
-//        recycler_menu_admin!!.adapter = adapter
-//    }
-//
-//    override fun onStop() {
-//        super.onStop()
-//        adapter!!.stopListening()
+       adapter.startListening()
+        adapter.notifyDataSetChanged()
+        recycler_menu_admin!!.adapter = adapter
+    }
+
+    override fun onStop() {
+        super.onStop()
+        adapter!!.stopListening()
 //    }
 //
 //    override fun onStart() {
@@ -299,78 +300,78 @@ class MainAdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
 
     //Update and delete
-//    override fun onContextItemSelected(item: MenuItem): Boolean {
-//        if (item.title == Common.UPDATE) {
-//            val adapter  = null
-//            showUpdateDialog(adapter!!.getRef(item.order).key, adapter!!.getItem(item.order))
-//        } else if (item.title == Common.DELETE) {
-//            ConfirmDeleteDialog(item)
-//        }
-//        return super.onContextItemSelected(item)
-//    }
-//
-//    private fun ConfirmDeleteDialog(item: MenuItem) {
-//        val alertDialog = AlertDialog.Builder(
-//            this@MainAdminActivity,
-//            R.style.Theme_AppCompat_DayNight_Dialog_Alert
-//        )
-//        alertDialog.setTitle("Confirm Delete?")
-//        val inflater = this.layoutInflater
-//        val confirm_delete_layout = inflater.inflate(R.layout.confirm_delete_layout, null)
-//        alertDialog.setView(confirm_delete_layout)
-//        alertDialog.setIcon(R.drawable.ic_delete_black_24dp)
-//        alertDialog.setPositiveButton("DELETE") { dialog, which ->
-//            dialog.dismiss()
-//            deleteCategory(adapter!!.getRef(item.order).key)
-//        }
-//        alertDialog.setNegativeButton("CANCEL") { dialog, which -> dialog.dismiss() }
-//        alertDialog.show()
-//    }
-//
-//    private fun showUpdateDialog(key: String?, item: Category) {
-//        val alertDialog = AlertDialog.Builder(
-//            this@MainAdminActivity,
-//            R.style.Theme_AppCompat_DayNight_Dialog_Alert
-//        )
-//        alertDialog.setTitle("Update Category")
-//        alertDialog.setMessage("Please fill full formation")
-//        val inflater = this.layoutInflater
-//        val add_menu_layout = inflater.inflate(R.layout.add_new_menu_layout, null)
-//        edtName = add_menu_layout.findViewById(R.id.edtName)
-//        btnSelect = add_menu_layout.findViewById(R.id.btnSelect)
-//        btnUpload = add_menu_layout.findViewById(R.id.btnUpload)
-//
-//        //set default name
-//        edtName.setText(item.name)
-//
-//        //Event for button
-//        btnSelect.setOnClickListener(View.OnClickListener { //let users select image from gallery and save URL of this image
-//            chooseImage()
-//        })
-//        btnUpload.setOnClickListener(View.OnClickListener { //upload image
-//            changeImage(item)
-//        })
-//        alertDialog.setView(add_menu_layout)
-//        alertDialog.setIcon(R.drawable.ic_shopping_cart_black_24dp)
-//
-//        //set Button
-//        alertDialog.setPositiveButton("YES") { dialog, which ->
-//            dialog.dismiss()
-//
-//            //update information
-//            item.name = edtName.getText().toString()
-//            categories!!.child(key!!).setValue(item)
-//            Toast.makeText(
-//                this@MainAdminActivity,
-//                "Category Name Updated Successfully!",
-//                Toast.LENGTH_SHORT
-//            ).show()
-//        }
-//        alertDialog.setNegativeButton("NO") { dialog, which -> dialog.dismiss() }
-//        alertDialog.show()
-//    }
-//
-//    private fun deleteCategory(key: String?) {
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        if (item.title == Common.UPDATE) {
+            val adapter  = null
+            showUpdateDialog(adapter!!.getRef(item.order).key, adapter!!.getItem(item.order))
+        } else if (item.title == Common.DELETE) {
+            ConfirmDeleteDialog(item)
+        }
+        return super.onContextItemSelected(item)
+    }
+
+    private fun ConfirmDeleteDialog(item: MenuItem) {
+        val alertDialog = AlertDialog.Builder(
+            this@MainAdminActivity,
+            R.style.Theme_AppCompat_DayNight_Dialog_Alert
+        )
+        alertDialog.setTitle("Confirm Delete?")
+        val inflater = this.layoutInflater
+        val confirm_delete_layout = inflater.inflate(R.layout.confirm_delete_layout, null)
+        alertDialog.setView(confirm_delete_layout)
+        alertDialog.setIcon(R.drawable.ic_delete_black_24dp)
+        alertDialog.setPositiveButton("DELETE") { dialog, which ->
+            dialog.dismiss()
+            deleteCategory(adapter!!.getRef(item.order).key)
+        }
+        alertDialog.setNegativeButton("CANCEL") { dialog, which -> dialog.dismiss() }
+        alertDialog.show()
+    }
+
+    private fun showUpdateDialog(key: String?, item: Category) {
+        val alertDialog = AlertDialog.Builder(
+            this@MainAdminActivity,
+            R.style.Theme_AppCompat_DayNight_Dialog_Alert
+        )
+        alertDialog.setTitle("Update Category")
+        alertDialog.setMessage("Please fill full formation")
+        val inflater = this.layoutInflater
+        val add_menu_layout = inflater.inflate(R.layout.add_new_menu_layout, null)
+        edtName = add_menu_layout.findViewById(R.id.edtName)
+        btnSelect = add_menu_layout.findViewById(R.id.btnSelect)
+        btnUpload = add_menu_layout.findViewById(R.id.btnUpload)
+
+        //set default name
+        edtName.setText(item.name)
+
+        //Event for button
+        btnSelect.setOnClickListener(View.OnClickListener { //let users select image from gallery and save URL of this image
+            chooseImage()
+        })
+        btnUpload.setOnClickListener(View.OnClickListener { //upload image
+           changeImage(item)
+        })
+        alertDialog.setView(add_menu_layout)
+       alertDialog.setIcon(R.drawable.ic_shopping_cart_black_24dp)
+
+        //set Button
+        alertDialog.setPositiveButton("YES") { dialog, which ->
+            dialog.dismiss()
+
+            //update information
+            item.name = edtName.getText().toString()
+            categories!!.child(key!!).setValue(item)
+            Toast.makeText(
+                this@MainAdminActivity,
+                "Category Name Updated Successfully!",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        alertDialog.setNegativeButton("NO") { dialog, which -> dialog.dismiss() }
+        alertDialog.show()
+    }
+
+    private fun deleteCategory(key: String?) {
 //
 //        //get all food in category
 //        val foods = database!!.getReference("Foods")
@@ -388,36 +389,36 @@ class MainAdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 //        Toast.makeText(this@MainAdminActivity, "Category Deleted Successfully!", Toast.LENGTH_SHORT)
 //            .show()
 //    }
-//
-//    private fun changeImage(item: Category) {
-//        if (saveUri != null) {
-//            val mDialog = ProgressDialog(this)
-//            mDialog.setMessage("Uploading...")
-//            mDialog.show()
-//            val imageName = UUID.randomUUID().toString()
-//            val imageFolder = storageReference!!.child("images/$imageName")
-//            imageFolder.putFile(saveUri!!).addOnSuccessListener {
-//                mDialog.dismiss()
-//                Toast.makeText(this@MainAdminActivity, "Uploaded!!!", Toast.LENGTH_SHORT).show()
-//                imageFolder.downloadUrl.addOnSuccessListener { uri -> //set value for newCategory if image upload and we can get download link
-//                    item.image = uri.toString()
-//                    Toast.makeText(
-//                        this@MainAdminActivity,
-//                        "Image Changed Successfully!",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-//            }
-//                .addOnFailureListener { e ->
-//                    mDialog.dismiss()
-//                    Toast.makeText(this@MainAdminActivity, "" + e.message, Toast.LENGTH_SHORT)
-//                        .show()
-//                }
-//                .addOnProgressListener { taskSnapshot ->
-//                    val progress =
-//                        (100 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount).toDouble()
-//                    mDialog.setMessage("Uploading$progress % ")
-//                }
-//        }
-//    }
+
+    private fun changeImage(item: Category) {
+        if (saveUri != null) {
+            val mDialog = ProgressDialog(this)
+            mDialog.setMessage("Uploading...")
+            mDialog.show()
+           val imageName = UUID.randomUUID().toString()
+            val imageFolder = storageReference!!.child("images/$imageName")
+            imageFolder.putFile(saveUri!!).addOnSuccessListener {
+                mDialog.dismiss()
+                Toast.makeText(this@MainAdminActivity, "Uploaded!!!", Toast.LENGTH_SHORT).show()
+                imageFolder.downloadUrl.addOnSuccessListener { uri -> //set value for newCategory if image upload and we can get download link
+                    item.image = uri.toString()
+                    Toast.makeText(
+                        this@MainAdminActivity,
+                        "Image Changed Successfully!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+                .addOnFailureListener { e ->
+                    mDialog.dismiss()
+                    Toast.makeText(this@MainAdminActivity, "" + e.message, Toast.LENGTH_SHORT)
+                        .show()
+               }
+                .addOnProgressListener { taskSnapshot ->
+                    val progress =
+                        (100 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount).toDouble()
+                    mDialog.setMessage("Uploading$progress % ")
+               }
+        }
+    }
 }

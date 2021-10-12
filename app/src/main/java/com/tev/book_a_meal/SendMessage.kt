@@ -3,9 +3,11 @@ package com.tev.book_a_meal
 import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.rengwuxian.materialedittext.MaterialEditText
+import com.tev.book_a_meal.Common.Common
 import com.tev.book_a_meal.Model.*
 import com.tev.book_a_meal.Remote.APIService
 import com.tev.book_a_meal.SendMessage
@@ -35,11 +37,11 @@ class SendMessage : AppCompatActivity() {
                 .build()
         )
         setContentView(R.layout.activity_send_message)
-//        mService = Common.getFCMClient()
-//        edtTitle = findViewById<View>(R.id.edtTitle) as MaterialEditText
-//        edtMessage = findViewById<View>(R.id.edtMessage) as MaterialEditText
-//        btnSubmit = findViewById<View>(R.id.btnSubmit) as FButton
-//        btnSubmit!!.setOnClickListener { verifyTitleAndMessage() }
+        mService = Common.getFCMClient()
+        edtTitle = findViewById<View>(R.id.edtTitle) as MaterialEditText
+        edtMessage = findViewById<View>(R.id.edtMessage) as MaterialEditText
+        btnSubmit = findViewById<View>(R.id.btnSubmit) as FButton
+        btnSubmit!!.setOnClickListener { verifyTitleAndMessage() }
     }
 
     private fun verifyTitleAndMessage() {

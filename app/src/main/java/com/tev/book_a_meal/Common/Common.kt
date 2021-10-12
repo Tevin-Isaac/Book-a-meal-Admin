@@ -10,10 +10,6 @@ import android.net.NetworkInfo
 import android.text.format.DateFormat
 import com.tev.book_a_meal.Model.Request
 import com.tev.book_a_meal.Model.User
-import com.tev.book_a_meal.Remote.APIService
-import com.tev.book_a_meal.Remote.FCMRetrofitClient
-import com.tev.book_a_meal.Remote.IGeoCoordinates
-import com.tev.book_a_meal.Remote.RetrofitClient
 import java.util.*
 
 object Common {
@@ -34,7 +30,7 @@ object Common {
     const val REMOVE = "Delete"
     const val PICK_IMAGE_REQUEST = 71
     const val baseURL = "https://maps.googleapis.com/"
-    const val fcmURL = "https://fcm.googleapis.com/"
+//    const val fcmURL = "https://fcm.googleapis.com/"
     fun convertCodeToStatus(code: String): String {
         return if (code == "0") "Placed" else if (code == "1") "Preparing Orders" else if (code == "2") "Shipping" else "Delivered"
     }
@@ -43,14 +39,11 @@ object Common {
         return if (code == "true") "Role:Staff" else if (code == "false") "Role:User" else if (code == "yes") "Role:Admin" else if (code == "no") "Role:Not Admin" else if (code == null) "Role:User" else "Role:User"
     }
 
-    val fCMClient: APIService
-        get() = FCMRetrofitClient.getClient(fcmURL)!!.create(
-            APIService::class.java
-        )
-    val geoCodeService: IGeoCoordinates
-        get() = RetrofitClient.getClient(baseURL)!!.create(
-            IGeoCoordinates::class.java
-        )
+//    val fCMClient: APIService
+//        get() = FCMRetrofitClient.getClient(fcmURL)!!.create(
+//            APIService::class.java
+//        )
+
 
     fun isConnectedToInternet(context: Context): Boolean {
         val connectivityManager =
